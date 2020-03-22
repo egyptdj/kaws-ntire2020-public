@@ -20,5 +20,5 @@ for id=fileids
   ssim_sum = ssim_sum + NTIRE_SSIM_imgs(strcat(labelpath,'/',id,'.png'), strcat(reconpath,'/',id,'.png'), 16);
 end
 
-psnr = psnr_sum/100
-ssim = ssim_sum/100
+psnr = psnr_sum/(end_id-start_id+1)
+ssim = ssim_sum/(end_id-start_id+1)
