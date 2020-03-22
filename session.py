@@ -219,8 +219,9 @@ class Session(object):
                 np.rot90(np.fliplr(ensemble_patch_resolved_image[5]), k=-1, axes=(1,2)), \
                 np.rot90(np.fliplr(ensemble_patch_resolved_image[6]), k=-2, axes=(1,2)), \
                 np.rot90(np.fliplr(ensemble_patch_resolved_image[7]), k=-3, axes=(1,2))]
-
-            final_image = np.rint(np.mean([reconstruct_patches(patches, image_size=(image.shape[0]*16, image.shape[1]*16), stride=stride*16, weighting=weighting) for patches in final_patch_resolved_image], axis=0)*255.0).astype(np.uint8)
+            
+            final_mean_image = np.mean(final_patch_resolved_image, axis=0)
+            final_image = np.rint(reconstruct_patches(final_mean_image, image_size=(image.shape[0]*16, image.shape[1]*16), stride=stride*16, weighting=weighting)*255.0).astype(np.uint8)
             end_time = time.time()
 
         return final_image, end_time-start_time
