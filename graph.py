@@ -48,7 +48,7 @@ class Graph(object):
                 self.global_step = tf.Variable(initial_value=0, trainable=False, name='GlobalStep', shape=[], dtype=tf.int64)
                 self.transition = tf.Variable(initial_value=0, trainable=False, name='Transition', shape=[], dtype=tf.int64)
                 self.trained_images_refine = tf.Variable(initial_value=0, trainable=False, name='TrainedImagesRefine', shape=[], dtype=tf.int64)
-                self.initial_learning_rate = tf.Variable(initial_value=0.0, trainable=False, name='InitialLearningRateRefine', shape=[])
+                self.initial_learning_rate = tf.Variable(initial_value=0.0, trainable=False, name='InitialLearningRate', shape=[])
                 learning_rate1 = tf.train.exponential_decay(self.initial_learning_rate, global_step=self.dataset.trained_images_per_lod[3], decay_steps=500000, decay_rate=0.5, staircase=True)
                 learning_rate2 = tf.train.exponential_decay(self.initial_learning_rate, global_step=self.dataset.trained_images_per_lod[3], decay_steps=500000, decay_rate=0.5, staircase=True)
                 learning_rate3 = tf.train.exponential_decay(self.initial_learning_rate, global_step=self.dataset.trained_images_per_lod[3], decay_steps=500000, decay_rate=0.5, staircase=True)
@@ -388,7 +388,3 @@ class Graph(object):
                 self.iter_saver = tf.train.Saver(name='IterSaver', max_to_keep=1)
                 self.lod_saver = tf.train.Saver(name='LODSaver', max_to_keep=5)
                 self.early_saver = tf.train.Saver(name='EarlySaver', max_to_keep=1)
-                generator_vars = tf.global_variables()
-                generator_vars = [var for var in generator_vars if not 'Refine' in var.name]
-                generator_vars = [var for var in generator_vars if not 'LOD4REF' in var.name]
-                self.generator_saver = tf.train.Saver(name='GeneratorSaver', var_list=generator_vars, max_to_keep=1)
