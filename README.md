@@ -15,7 +15,7 @@ Reproduce the final results:
 
 Train from scratch:
 
-1. Download the [training related data](https://www.dropbox.com/s/xcz2yty7ukp25bg/kaws_train_cache.zip?dl=0) and extract it in the git path
+1. Download the [training related data](https://www.dropbox.com/s/xcz2yty7ukp25bg/train_cache.zip?dl=0) and extract it in the git path
 2. Run the following code.
 
   ```shell
